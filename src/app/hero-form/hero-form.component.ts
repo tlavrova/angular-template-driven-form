@@ -7,7 +7,7 @@ import {Hero} from "../hero";
   template: `
     <div class="container">
       <div [hidden]="submitted">
-        <form #heroForm="ngForm">
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
           <h1>Hero Form</h1>
           <div class="form-group">
             <label for="name">Name</label>
@@ -31,7 +31,25 @@ import {Hero} from "../hero";
           </div>
 
           <button type="button" class="btn btn-default" (click)="newHero(); heroForm.resetForm()">New Hero</button>
+          <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
         </form>
+      </div>
+      <div [hidden]="!submitted">
+        <h2>You submitted the following:</h2>
+        <div class="row">
+          <div class="col-xs-3">Name</div>
+          <div class="col-xs-9">{{ model.name }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Alter Ego</div>
+          <div class="col-xs-9">{{ model.alterEgo }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Power</div>
+          <div class="col-xs-9">{{ model.power }}</div>
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
       </div>
     </div>
   `
