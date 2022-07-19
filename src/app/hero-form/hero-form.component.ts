@@ -11,8 +11,11 @@ import {Hero} from "../hero";
           <h1>Hero Form</h1>
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"/>
-            TODO: remove this: {{model.name}}
+            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #name="ngModel"/>
+            <div [hidden]="name.valid || name.pristine"
+                 class="alert alert-danger">
+              Name is required
+            </div>
           </div>
 
           <div class="form-group">
