@@ -29,6 +29,8 @@ import {Hero} from "../hero";
               <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
             </select>
           </div>
+
+          <button type="button" class="btn btn-default" (click)="newHero(); heroForm.resetForm()">New Hero</button>
         </form>
       </div>
     </div>
@@ -45,4 +47,7 @@ export class HeroFormComponent {
 
   onSubmit() { this.submitted = true; }
 
+  newHero() {
+    this.model = new Hero(42, '', '');
+  }
 }
