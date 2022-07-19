@@ -5,22 +5,29 @@ import {Hero} from "../hero";
   selector: 'app-hero-form',
   styleUrls: ['./hero-form.component.css'],
   template: `
-    <h1>Hero Form</h1>
-    <div class="form-group">
-      <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" required/>
-    </div>
+    <div class="container">
+      <div [hidden]="submitted">
+        <form #heroForm="ngForm">
+          <h1>Hero Form</h1>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"/>
+            TODO: remove this: {{model.name}}
+          </div>
 
-    <div class="form-group">
-      <label for="alterEgo">Alter Ego</label>
-      <input type="text" class="form-control" id="alterEgo"/>
-    </div>
+          <div class="form-group">
+            <label for="alterEgo">Alter Ego</label>
+            <input type="text" class="form-control" id="alterEgo" [(ngModel)]="model.alterEgo" name="alterEgo"/>
+          </div>
 
-    <div class="form-group">
-      <label for="power">Hero Power</label>
-      <select class="form-control" id="power" required>
-        <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
-      </select>
+          <div class="form-group">
+            <label for="power">Hero Power</label>
+            <select class="form-control" id="power" required [(ngModel)]="model.power" name="power">
+              <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+            </select>
+          </div>
+        </form>
+      </div>
     </div>
   `
 })
